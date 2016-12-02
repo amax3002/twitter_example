@@ -1,5 +1,53 @@
 class TweetsController < ApplicationController
   def index
-    @tweets = Tweet.all
+    @per_page = 15.0
+    @tweets = Tweet.limit(@per_page).offset(@per_page * current_page)
   end
+
+  def total_pages
+    (Tweet.count / @per_page).ceil
+  end
+
+  def current_page
+    page = params[:page].to_i
+    @page = if page < total_pages && page > 0
+      page
+    else
+      0
+    end
+  end
+
+  helper_method :total_pages
+  helper_method :current_page
+
+  def new
+    @tweet = Tweet.new
+  end
+
+  def edit
+  end
+
+  def create
+    @tweet = Tweet.new(tweet_params)
+
+    if @tweet.save
+      redirect_to @tweet, notice: 'Tweet was created.'
+    else
+      render :new
+    end
+  end
+  
+  def update
+    if @tweet.update(tweet_params)
+      redirect_to @tweet, notice: 'Tweet was updated.'
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @tweet.destroy
+    redirect_to tweets_url, notice: 'Tweet was successfully destroyed.'
+  end
+
 end
