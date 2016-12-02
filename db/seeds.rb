@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.create(email: 'amax3002@gmail.com', full_name: 'Alex Guy', nickname: 'amax3002', password: 'password', password_confirmation: 'password' )
+User.create(email: 'amax3002@gmail.com', full_name: 'Alex Guy', nickname: 'amax3002', password: 'password', password_confirmation: 'password', membership_type: "admin")
 User.create(email: 'lguy@comcast.net', full_name: 'Laurent Guy', nickname: 'lguy3000', password: 'password', password_confirmation: 'password' )
 
 rand(250..1000).times do
