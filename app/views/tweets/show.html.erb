@@ -1,0 +1,33 @@
+<h1>
+  Tweet Details for <%= @tweet.user.full_name %>
+  <small><%= @tweet.created_at %></small>
+</h1>
+
+<%= link_to "Go Back", tweets_path %>
+
+<hr>
+
+<div class = "row">
+  <div class = "col-md-3">
+    Nickname
+  </div>
+  <div class="col-md-6">
+    Message
+  </div>
+  <div <div class="col-md-3">
+    Email
+  </div>
+</div>
+
+<hr>
+<div class = "row">
+  <div class = "col-md-3">
+    <%= @tweet.user.nickname %>
+  </div>
+  <div class="col-md-6">
+    <%= @tweet.message %>
+  </div>
+  <div <div class="col-md-3">
+    <%= @tweet.user.email %>
+  </div>
+</div>

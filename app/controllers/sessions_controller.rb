@@ -12,4 +12,9 @@ class SessionsController < ApplicationController
       redirect_to new_session_path, alert: "Email and Password combination do not match."
     end
   end
+
+  def destroy
+    session.delete("current_user_id")
+    redirect_to root_path
+  end
 end

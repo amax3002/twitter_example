@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    session["message"] = "you signed up!"
 
     if @user.save
       session[:current_user_id] = @user.id
@@ -15,6 +16,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email, :password_confirmation, :password)
+    params.require(:user).permit(:email, :password_confirmation, :password, :full_name, :nickname)
   end
 end

@@ -21,7 +21,7 @@ class TweetsController < ApplicationController
   helper_method :current_page
 
   def new
-    @tweet = Tweet.new(user_id: current_user_id)
+    @tweet = Tweet.new(user_id: current_user.id)
   end
 
   def edit
@@ -37,6 +37,11 @@ class TweetsController < ApplicationController
     end
   end
 
+  def show
+    @grade = Tweet.find(params["id"])
+    render :show
+  end
+
   def update
     if @tweet.update(tweet_params)
       redirect_to @tweet, notice: 'Tweet was updated.'
@@ -46,12 +51,13 @@ class TweetsController < ApplicationController
   end
 
   def destroy
+    @tweet = Tweet.find(params["id"])
     @tweet.destroy
     redirect_to tweets_url, notice: 'Tweet was successfully destroyed.'
   end
 
   def tweet_params
-    params.require(:tweet).permit( :user_id, :message, user_attributes: [:full_name, :email, :password])
+    params.require(:tweet).permit( :user_id, :message, user_attributes: [:full_name, :email, :password, :full_name, :nickname])
   end
 
 end
