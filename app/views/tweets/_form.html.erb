@@ -1,0 +1,13 @@
+<h1>Create Parent</h1>
+<%= form_for @tweet do |f| %>
+
+  <%= f.label :message %>
+  <%= f.text_field :message, class: 'form-control' %>
+
+  <%= f.label :user_id %>
+  <%= f.hidden_field :user_id, class: 'form-control' %>
+
+  <hr>
+
+  <%= f.submit class: 'btn btn-primary' %>
+<% end %>

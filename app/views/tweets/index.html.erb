@@ -1,2 +1,19 @@
-<h1>Tweets#new</h1>
-<p>Find me in app/views/tweets/new.html.erb</p>
+<h1>Tweets</h1>
+
+<%= link_to 'Write Tweet', new_tweet_path %>
+
+<hr>
+
+<%= render @tweets %>
+
+<hr>
+
+<% if total_pages > current_page  %>
+  <%= link_to "Next Page", tweets_path(page: current_page + 1) %>
+<% end %>
+<% 10.times do |i| %>
+  <%= link_to current_page + i, tweets_path(page: current_page + i) %>
+<% end %>
+<% if current_page > 0  %>
+  <%= link_to "Prev Page", tweets_path(page: current_page - 1)%>
+<% end %>
