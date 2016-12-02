@@ -2,6 +2,21 @@
 
 <%= link_to 'Write Tweet', new_tweet_path %>
 
+<div class="row_headers">
+  <div class="col-md-3">
+    User's Nickname/Name
+  </div>
+  <div class="col-md-2">
+    When Created
+  </div>
+  <div class="col-md-5">
+    Message
+  </div>
+  <div class="col-md-2">
+    Manage Tweet
+  </div>
+</div>
+
 <hr>
 
 <%= render @tweets %>
@@ -9,11 +24,11 @@
 <hr>
 
 <% if total_pages > current_page  %>
-  <%= link_to "Next Page", tweets_path(page: current_page + 1) %>
+<%= link_to "Next Page", tweets_path(page: current_page + 1) %>
 <% end %>
 <% 10.times do |i| %>
-  <%= link_to current_page + i, tweets_path(page: current_page + i) %>
+<%= link_to current_page + i, tweets_path(page: current_page + i) %>
 <% end %>
 <% if current_page > 0  %>
-  <%= link_to "Prev Page", tweets_path(page: current_page - 1)%>
+<%= link_to "Prev Page", tweets_path(page: current_page - 1)%>
 <% end %>

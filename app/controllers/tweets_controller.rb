@@ -1,4 +1,11 @@
 class TweetsController < ApplicationController
+  before_action :authenticated!, only: :new
+  load_and_authorize_resource
+
+  def authenticated!
+    redirect_to "/tweets" unless current_user
+  end
+
   def index
     @per_page = 15.0
     @tweets = Tweet.limit(@per_page).offset(@per_page * current_page)
@@ -25,6 +32,7 @@ class TweetsController < ApplicationController
   end
 
   def edit
+    @tweet = Tweet.find(params["id"])
   end
 
   def create
@@ -38,11 +46,12 @@ class TweetsController < ApplicationController
   end
 
   def show
-    @grade = Tweet.find(params["id"])
+    @tweet = Tweet.find(params["id"])
     render :show
   end
 
   def update
+    @tweet = Tweet.find(params["id"])
     if @tweet.update(tweet_params)
       redirect_to @tweet, notice: 'Tweet was updated.'
     else

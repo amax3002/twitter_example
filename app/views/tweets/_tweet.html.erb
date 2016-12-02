@@ -1,20 +1,22 @@
+
 <div class="row">
   <div class="col-md-3">
     <h3>
       <%= link_to tweet.user.nickname, tweet_path(tweet.id) %>
-      <small> Created: <%= time_ago_in_words(tweet.created_at) %> </small>
+      <small> <%= tweet.user.full_name %> </small>
     </h3>
 
   </div>
   <div class="general_formatting">
     <div class="col-md-2">
-      <%= tweet.user.full_name %>
+      Created: <%= time_ago_in_words(tweet.created_at) %> ago
     </div>
     <div class="col-md-5">
       <%= tweet.message%>
     </div>
     <div class="col-md-2">
-      <%= link_to "Delete Post", tweet_path(tweet.id), method: :delete, class: 'btn btn-sm btn-danger' %>
+      <%= link_to 'Edit', edit_tweet_path(tweet), class: 'btn btn-warning' %>
+      <%= link_to "Delete", tweet_path(tweet.id), method: :delete, class: 'btn btn-sm btn-danger' %>
     </div>
   </div>
 </div>

@@ -1,6 +1,6 @@
 <h1>
-  Tweet Details for <%= @tweet.user.full_name %>
-  <small><%= @tweet.created_at %></small>
+  Tweet Details for <%= @tweet.user.nickname %>
+  <small> <%= @tweet.user.full_name %> </small>
 </h1>
 
 <%= link_to "Go Back", tweets_path %>
@@ -9,7 +9,7 @@
 
 <div class = "row">
   <div class = "col-md-3">
-    Nickname
+    When the Tweet Created
   </div>
   <div class="col-md-6">
     Message
@@ -22,7 +22,7 @@
 <hr>
 <div class = "row">
   <div class = "col-md-3">
-    <%= @tweet.user.nickname %>
+    <%= time_ago_in_words(@tweet.created_at) %> ago
   </div>
   <div class="col-md-6">
     <%= @tweet.message %>
